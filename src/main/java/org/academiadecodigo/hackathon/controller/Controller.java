@@ -47,8 +47,8 @@ public class Controller {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    /*
-    @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
     public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
 
         if (bindingResult.hasErrors() || user.getUsername() != null) {
@@ -64,11 +64,5 @@ public class Controller {
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
-    */
 
-    @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addUser(@RequestBody User user) {
-        users.add(user);
-        return new ResponseEntity(HttpStatus.OK);
-    }
 }
