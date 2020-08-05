@@ -47,7 +47,6 @@ public class Controller {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
     public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
 
