@@ -47,6 +47,7 @@ public class Controller {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    /*
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
 
@@ -63,11 +64,11 @@ public class Controller {
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
-/*
-    @RequestMapping(method = RequestMethod.POST, path = "api/customer", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addUser(@RequestBody CustomerDto customerDto){
-        Customer customer = customerDtoToCustomer.convert(customerDto);
-        customerService.save(customer);
+    */
+
+    @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity addUser(@RequestBody User user) {
+        users.add(user);
         return new ResponseEntity(HttpStatus.OK);
-    }*/
+    }
 }
