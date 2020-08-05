@@ -49,7 +49,7 @@ public class Controller {
 
 
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
-    public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors() || user.getUsername() != null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -57,12 +57,7 @@ public class Controller {
 
         users.add(user);
 
-        UriComponents uriComponents = uriComponentsBuilder.path("").build();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(uriComponents.toUri());
-
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }
