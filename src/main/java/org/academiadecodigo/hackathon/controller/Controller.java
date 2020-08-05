@@ -66,7 +66,7 @@ public class Controller {
     }
     */
 
-    @RequestMapping(method = RequestMethod.PUT, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity addUser(@RequestBody User user) {
         users.add(user);
         return new ResponseEntity(HttpStatus.OK);
