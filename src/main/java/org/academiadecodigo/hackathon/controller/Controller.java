@@ -3,6 +3,7 @@ package org.academiadecodigo.hackathon.controller;
 import org.academiadecodigo.hackathon.model.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +47,7 @@ public class Controller {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
+    @RequestMapping(method = RequestMethod.POST, path = {"/", ""}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
 
         if (bindingResult.hasErrors() || user.getUsername() != null) {
@@ -55,15 +56,18 @@ public class Controller {
 
         users.add(user);
 
-        //set headers with the created path
-        //HttpHeaders headers = new HttpHeaders();
-        //headers.setLocation(uriComponents.toUri());
-
-        UriComponents uriComponents = uriComponentsBuilder.path("/api/customer/").build();
+        UriComponents uriComponents = uriComponentsBuilder.path("").build();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uriComponents.toUri());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
+/*
+    @RequestMapping(method = RequestMethod.POST, path = "api/customer", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity addUser(@RequestBody CustomerDto customerDto){
+        Customer customer = customerDtoToCustomer.convert(customerDto);
+        customerService.save(customer);
+        return new ResponseEntity(HttpStatus.OK);
+    }*/
 }
