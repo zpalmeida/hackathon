@@ -3,7 +3,6 @@ package org.academiadecodigo.hackathon.controller;
 import org.academiadecodigo.hackathon.model.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,7 +49,7 @@ public class Controller {
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
     public ResponseEntity<?> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
 
-        if (bindingResult.hasErrors() || user.getUsername() != null) {
+        if (bindingResult.hasErrors() || user.getUsername() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
