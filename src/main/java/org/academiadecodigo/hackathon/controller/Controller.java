@@ -57,7 +57,7 @@ public class Controller {
 
         users.add(user);
 
-        UriComponents uriComponents = uriComponentsBuilder.path("/ze").build();
+        UriComponents uriComponents = uriComponentsBuilder.path("").build();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uriComponents.toUri());
