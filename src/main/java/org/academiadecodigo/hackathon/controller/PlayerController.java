@@ -1,7 +1,7 @@
 package org.academiadecodigo.hackathon.controller;
 
-import org.academiadecodigo.hackathon.model.User;
-import org.academiadecodigo.hackathon.service.Service;
+import org.academiadecodigo.hackathon.model.Player;
+import org.academiadecodigo.hackathon.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,38 +11,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
-public class Controller {
+@RequestMapping("/api/player")
+public class PlayerController {
 
-    private Service service;
+    private GameService gameService;
 
     @Autowired
-    public void setService(Service service) {
-        this.service = service;
+    public void setGameService(GameService gameService) {
+        this.gameService = gameService;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = {"/", ""})
-    public ResponseEntity<List<User>> listUsers() {
+    public ResponseEntity<List<Player>> listPlayers() {
 
-        return new ResponseEntity<>(service.getUsers(), HttpStatus.OK);
+        return new ResponseEntity<>(gameService.getPlayers(), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
-    public ResponseEntity<?> addUser(@Valid @RequestBody User user, BindingResult bindingResult, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<?> addPlayer(@Valid @RequestBody Player player, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors() || user.getUsername() == null) {
+        if (bindingResult.hasErrors() || player.getUsername() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        service.addUser(user);
+        gameService.addPlayer(player);
 
         HttpHeaders headers = new HttpHeaders();
 

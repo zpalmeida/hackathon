@@ -1,6 +1,6 @@
 package org.academiadecodigo.hackathon.model;
 
-public class User {
+public class Player {
 
     private String username;
 
