@@ -34,7 +34,7 @@ public class PlayerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
-    public ResponseEntity<?> addPlayer(@Valid @RequestBody Player player, BindingResult bindingResult) {
+    public ResponseEntity<?> addPlayer(@RequestBody Player player, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors() || player.getUsername() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
