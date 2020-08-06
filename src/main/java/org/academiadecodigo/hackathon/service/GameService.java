@@ -1,6 +1,5 @@
 package org.academiadecodigo.hackathon.service;
 
-import jdk.jfr.internal.PlatformEventType;
 import org.academiadecodigo.hackathon.factory.BlackListFactory;
 import org.academiadecodigo.hackathon.model.BlackList;
 import org.academiadecodigo.hackathon.model.Player;
