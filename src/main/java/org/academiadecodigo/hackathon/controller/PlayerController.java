@@ -1,6 +1,8 @@
 package org.academiadecodigo.hackathon.controller;
 
+import org.academiadecodigo.hackathon.converter.PlayerToPlayerDto;
 import org.academiadecodigo.hackathon.model.Player;
+import org.academiadecodigo.hackathon.model.dto.PlayerDto;
 import org.academiadecodigo.hackathon.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,16 +23,28 @@ import java.util.List;
 public class PlayerController {
 
     private GameService gameService;
+    private PlayerToPlayerDto playerToPlayerDto;
 
     @Autowired
     public void setGameService(GameService gameService) {
         this.gameService = gameService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = {"/", ""})
-    public ResponseEntity<List<Player>> listPlayers() {
+    @Autowired
+    public void setPlayerToPlayerDto(PlayerToPlayerDto playerToPlayerDto) {
+        this.playerToPlayerDto = playerToPlayerDto;
+    }
 
-        return new ResponseEntity<>(gameService.getPlayers(), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET, path = {"/", ""})
+    public ResponseEntity<List<PlayerDto>> listPlayers() {
+
+        List<PlayerDto> playerDtos = new ArrayList<>();
+
+        for (Player player : gameService.getPlayers()) {
+            playerDtos.add(playerToPlayerDto.converter(player));
+        }
+
+        return new ResponseEntity<>(playerDtos, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
