@@ -9,7 +9,7 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET, path = {"/", ""})
     public String home() {
-        return "htmlhome";
+        return "startMenu";
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/authentication")
