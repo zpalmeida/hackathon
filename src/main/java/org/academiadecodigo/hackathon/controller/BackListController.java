@@ -53,15 +53,13 @@ public class BackListController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{username}")
-    public ResponseEntity<BlackList> sendBlackList(@PathVariable String username, BindingResult bindingResult) {
+    public ResponseEntity<BlackList> sendBlackList(@PathVariable String username) {
 
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+        /*
         if (!gameService.isGameStarted()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        */
 
         gameService.setVictims();
 
