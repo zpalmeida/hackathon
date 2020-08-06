@@ -15,6 +15,7 @@ public class GameService {
     private List<Player> players = new ArrayList<>();
     private List<String> weapons;
     private List<String> crimeScenes;
+    private List<BlackList> blackLists = new ArrayList<>();
     private BlackListFactory blackListFactory;
 
     public void setWeapons(List<String> weapons) {
@@ -60,7 +61,7 @@ public class GameService {
         return mockCrimeScenes;
     }
 
-    private void randomizer(List<Player> players, List<BlackList> blackLists) {
+    private void setWeaponsAndScenes(List<BlackList> blackLists) {
 
         List<String> weapons = getMockWeapons();
         List<String> crimeScenes = getMockCrimeScenes();
@@ -79,20 +80,23 @@ public class GameService {
             String weapon = weapons.remove((int)(Math.random() * (crimeScenes.size() + 1)));
             String crimeScene = crimeScenes.remove((int)(Math.random() * (crimeScenes.size() + 1)));
 
-            BlackList blackList = new BlackList();
-            blackList.setWeapon(weapon);
-            blackList.setCrimeScene(crimeScene);
-
+            BlackList blackList = blackListFactory.createBlackList(weapon, crimeScene);
             player.setBlackList(blackList);
             blackLists.add(blackList);
         }
     }
 
-    public List<String> setVictims () {
+    public List<BlackList> setVictims () {
 
-        for (Player player : players) {
+        setWeaponsAndScenes(blackLists);
 
+        for (int i = 0; i < blackLists.size() - 1; i++) {
 
+            blackLists.get(i).setVictim(players.get(i + 1).getUsername());
         }
+
+        blackLists.get(blackLists.size() - 1).setVictim(players.get(0).getUsername());
+
+        return blackLists;
     }
 }

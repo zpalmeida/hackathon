@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="killer-game" />
         <module name="hackathon" />
+        <module name="killer-game" />
         <module name="killergame" />
       </profile>
     </annotationProcessing>
