@@ -1,5 +1,6 @@
 package org.academiadecodigo.hackathon.service;
 
+import jdk.jfr.internal.PlatformEventType;
 import org.academiadecodigo.hackathon.factory.BlackListFactory;
 import org.academiadecodigo.hackathon.model.BlackList;
 import org.academiadecodigo.hackathon.model.Player;
@@ -15,7 +16,6 @@ public class GameService {
     private List<String> weapons;
     private List<String> crimeScenes;
     private BlackListFactory blackListFactory;
-    private HashMap<Player, BlackList> blackLists = new HashMap<>();
 
     public void setWeapons(List<String> weapons) {
         this.weapons = weapons;
@@ -39,7 +39,7 @@ public class GameService {
     }
 
     public BlackList getBlackList(Player player) {
-        return blackLists.get(player);
+        return player.getBlackList();
     }
 
     public List<String> getMockWeapons() {
@@ -60,7 +60,7 @@ public class GameService {
         return mockCrimeScenes;
     }
 
-    private void randomizer(List<Player> players, HashMap<Player, BlackList> blackLists) {
+    private void randomizer(List<Player> players, List<BlackList> blackLists) {
 
         List<String> weapons = getMockWeapons();
         List<String> crimeScenes = getMockCrimeScenes();
@@ -79,17 +79,20 @@ public class GameService {
             String weapon = weapons.remove((int)(Math.random() * (crimeScenes.size() + 1)));
             String crimeScene = crimeScenes.remove((int)(Math.random() * (crimeScenes.size() + 1)));
 
-            blackLists.put(player, blackListFactory.createBlackList(weapon, crimeScene));
+            BlackList blackList = new BlackList();
+            blackList.setWeapon(weapon);
+            blackList.setCrimeScene(crimeScene);
+
+            player.setBlackList(blackList);
+            blackLists.add(blackList);
         }
     }
 
-    public Map<Player, BlackList> setVictims () {
+    public List<String> setVictims () {
 
-        randomizer(players, blackLists);
-        //players.add(players.remove(0));
+        for (Player player : players) {
 
-        blackLists.forEach((player, blackList) -> blackList.setVictim(players.iterator().next().getUsername()));
 
-        return blackLists;
+        }
     }
 }
