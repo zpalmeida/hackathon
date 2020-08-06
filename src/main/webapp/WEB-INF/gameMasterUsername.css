@@ -1,0 +1,331 @@
+*
+{
+    margin: 0;
+    padding: 0;
+
+}
+
+body
+{
+  justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Bad Script',cursive;
+    background-image: linear-gradient(to right, #000000, #000000 );
+}
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar
+{
+    background-image: linear-gradient(to right, #000000, #000000 );
+    padding: 0 !important;
+}
+.navbar-brand img
+{
+    height: 60px;
+    padding-left: 20px;
+}
+.navbar-nav li a
+{
+    color: #fff !important;
+    font-weight: 600;
+    float: right;
+    text-align: left;
+    font-family:monospace;
+}
+.fa-bars
+{
+    color: #fff;
+    font-size: 30px;
+}
+.navbar-toggler
+{
+    outline: none !important;
+}
+
+/*---------------banner section---------------*/
+
+#banner
+{
+    background-image: linear-gradient(to right, #000000, #000000);
+    color: #fff;
+    padding-top: 5%;
+    font-family: 'Fredericka the Great', cursive;
+}
+.promo-title
+{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100px;
+}
+#banner a
+{
+    color: #fff;
+    text-decoration: none;
+}
+
+h2{
+  margin: 0;
+  padding: 0;
+  position: relative;
+  color: #111;
+  font-size: 900;
+
+}
+h2 span{
+  dipslay: table-cell;
+  margin: 0;
+  padding: 0;
+  animation: animate 2s linear infinite;
+}
+h2 span:nth-child(1) {
+  animation-delay: 0s;
+}
+h2 span:nth-child(2) {
+  animation-delay: 0.25s;
+}
+h2 span:nth-child(3) {
+  animation-delay: 0.5s;
+}
+h2 span:nth-child(4) {
+  animation-delay: 0.75s;
+}
+h2 span:nth-child(5) {
+  animation-delay: 1s;
+}
+h2 span:nth-child(6) {
+  animation-delay: 1.25s;
+}
+h2 span:nth-child(7) {
+  animation-delay: 1.5s;
+}
+h2 span:nth-child(8) {
+  animation-delay: 1.75s;
+}
+h2 span:nth-child(9) {
+  animation-delay: 2s;
+}
+h2 span:nth-child(10) {
+  animation-delay: 2.25s;
+}
+h2 span:nth-child(11) {
+  animation-delay: 2.5s;
+}
+h2 span:nth-child(12) {
+  animation-delay: 2.75s;
+}
+h2 span:nth-child(13) {
+  animation-delay: 3s;
+}
+h2 span:nth-child(14) {
+  animation-delay: 3.25s;
+}
+h2 span:nth-child(15) {
+  animation-delay: 3.5s;
+}
+h2 span:nth-child(16) {
+  animation-delay: 3.75s;
+}
+h2 span:nth-child(17) {
+  animation-delay: 4s;
+}
+h2 span:nth-child(18) {
+  animation-delay: 4.5s;
+}
+@keyframes animate {
+  0%,100% {
+    color: #fff;
+    filter: blur(2px);
+    text-shadow: 0 0 10px #FF0000,
+    0 0 20px #FF0000,
+    0 0 40px #FF0000,
+    0 0 80px #FF0000,
+    0 0 120px #FF0000,
+    0 0 200px #FF0000,
+    0 0 300px #FF0000,
+    0 0 400px #FF0000;
+
+  }
+  5%,95% {
+    color: #111;
+    filter: blur(0px);
+  }
+}
+.btn-container {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+  font-family: 'Fredericka the Great', cursive;
+  justify-content: center;
+}
+
+.btn-container .btn {
+  margin: 0 20px;
+}
+.btn {
+  position: relative;
+  display: inline;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 4px;
+}
+
+.btn:hover{
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn span {
+  position: absolute;
+}
+
+.btn-blue {
+  color: #03e9f4;
+}
+
+.btn-blue:hover {
+  background: #03e9f4;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4,
+}
+.btn-blue span:nth-child(1) {
+  background-color: linear-gradient(90deg,transparent, #03e9f4);
+}
+.btn-blue span:nth-child(2) {
+  background-color: linear-gradient(180deg,transparent, #03e9f4);
+}
+.btn-blue span:nth-child(3) {
+  background-color: linear-gradient(270deg,transparent, #03e9f4);
+}
+.btn-blue span:nth-child(4) {
+  background-color: linear-gradient(360deg,transparent, #03e9f4);
+}
+
+.btn-red {
+  color: #FF0D0D;
+}
+
+.btn-red:hover {
+  background: #FF0D0D;
+  box-shadow: 0 0 5px #FF0D0D,
+              0 0 25px #FF0D0D,
+              0 0 50px #FF0D0D,
+              0 0 100px #FF0D0D,
+}
+.btn-red span:nth-child(1) {
+  background-color: linear-gradient(90deg,transparent, #FF0D0D);
+}
+.btn-red span:nth-child(2) {
+  background-color: linear-gradient(180deg,transparent, #FF0D0D);
+}
+.btn-red span:nth-child(3) {
+  background-color: linear-gradient(270deg,transparent, #FF0D0D);
+}
+.btn-red span:nth-child(4) {
+  background-color: linear-gradient(360deg,transparent, #FF0D0D);
+}
+
+.btn-green {
+  color: #28ff0d;
+}
+
+.btn-green:hover {
+  background: #28ff0d;
+  box-shadow: 0 0 5px #28ff0d,
+              0 0 25px #28ff0d,
+              0 0 50px #28ff0d,
+              0 0 100px #28ff0d,
+}
+.btn-green span:nth-child(1) {
+  background-color: linear-gradient(90deg,transparent, #28ff0d);
+}
+.btn-green span:nth-child(2) {
+  background-color: linear-gradient(180deg,transparent, #28ff0d);
+}
+.btn-green span:nth-child(3) {
+  background-color: linear-gradient(270deg,transparent, #28ff0d);
+}
+.btn-green span:nth-child(4) {
+  background-color: linear-gradient(360deg,transparent, #28ff0d);
+}
+
+.btn span:nth-child(1) {
+  top:0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  animation: btn-anim1 1s linear infinite;
+}
+@keyframe btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.btn span:nth-child(2){
+top: -100%;
+left: 0%;
+width: 2px;
+height: 100%;
+animation: btn-anim2 1s linear infinite;
+animation-delay: .25s;
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%, 100% {
+    top: 100%;
+  }
+}
+
+.btn span:nth-child(3){
+bottom: 0;
+right: -100%;
+width: 100%;
+height: 2px;
+animation: btn-anim3 1s linear infinite;
+animation-delay: .5s;
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%, 100% {
+    right: 100%;
+  }
+}
+.btn span:nth-child(4){
+bottom: -100%;
+left: 0%;
+width: 2px;
+height: 100%;
+animation: btn-anim4 1s linear infinite;
+animation-delay: .75s;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%, 100% {
+    bottom: 100%;
+  }
+}
