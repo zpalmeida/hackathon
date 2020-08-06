@@ -81,6 +81,4 @@ public class BackListController {
 
         return new ResponseEntity<>(gameService.getBlackList(gameService.findPlayerByUsername(vUsername)), HttpStatus.OK);
     }
-
-
 }
