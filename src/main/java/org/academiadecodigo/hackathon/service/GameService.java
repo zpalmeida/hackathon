@@ -15,7 +15,7 @@ public class GameService {
     private List<String> weapons;
     private List<String> crimeScenes;
     private List<BlackList> blackLists = new ArrayList<>();
-    private BlackListFactory blackListFactory;
+    private BlackListFactory blackListFactory = new BlackListFactory();
 
     public void setWeapons(List<String> weapons) {
         this.weapons = weapons;
@@ -42,20 +42,24 @@ public class GameService {
         return player.getBlackList();
     }
 
-    public List<String> getMockWeapons() {
+    private List<String> getMockWeapons() {
 
         List<String> mockWeapons = new ArrayList<>();
 
-        mockWeapons.addAll(weapons);
+        for (String weapon : weapons) {
+            mockWeapons.add(weapon);
+        }
 
         return mockWeapons;
     }
 
-    public List<String> getMockCrimeScenes() {
+    private List<String> getMockCrimeScenes() {
 
         List<String> mockCrimeScenes = new ArrayList<>();
 
-        mockCrimeScenes.addAll(crimeScenes);
+        for (String crimeScene : crimeScenes) {
+            mockCrimeScenes.add(crimeScene);
+        }
 
         return mockCrimeScenes;
     }
@@ -76,8 +80,8 @@ public class GameService {
                 crimeScenes = getMockCrimeScenes();
             }
 
-            String weapon = weapons.remove((int)(Math.random() * (crimeScenes.size() + 1)));
-            String crimeScene = crimeScenes.remove((int)(Math.random() * (crimeScenes.size() + 1)));
+            String weapon = weapons.remove((int)(Math.random() * weapons.size()));
+            String crimeScene = crimeScenes.remove((int)(Math.random() * crimeScenes.size()));
 
             BlackList blackList = blackListFactory.createBlackList(weapon, crimeScene);
             player.setBlackList(blackList);
@@ -85,7 +89,7 @@ public class GameService {
         }
     }
 
-    public List<BlackList> setVictims () {
+    public List<BlackList> setVictims() {
 
         setWeaponsAndScenes(blackLists);
 
