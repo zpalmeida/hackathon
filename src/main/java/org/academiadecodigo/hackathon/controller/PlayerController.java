@@ -1,5 +1,6 @@
 package org.academiadecodigo.hackathon.controller;
 
+import org.academiadecodigo.hackathon.converter.PlayerDtoToPlayer;
 import org.academiadecodigo.hackathon.converter.PlayerToPlayerDto;
 import org.academiadecodigo.hackathon.model.Player;
 import org.academiadecodigo.hackathon.model.dto.PlayerDto;
@@ -24,6 +25,7 @@ public class PlayerController {
 
     private GameService gameService;
     private PlayerToPlayerDto playerToPlayerDto;
+    private PlayerDtoToPlayer playerDtoToPlayer;
 
     @Autowired
     public void setGameService(GameService gameService) {
@@ -33,6 +35,11 @@ public class PlayerController {
     @Autowired
     public void setPlayerToPlayerDto(PlayerToPlayerDto playerToPlayerDto) {
         this.playerToPlayerDto = playerToPlayerDto;
+    }
+
+    @Autowired
+    public void setPlayerDtoToPlayer(PlayerDtoToPlayer playerDtoToPlayer) {
+        this.playerDtoToPlayer = playerDtoToPlayer;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = {"/", ""})
@@ -48,13 +55,13 @@ public class PlayerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
-    public ResponseEntity<?> addPlayer(@Valid @RequestBody Player player, BindingResult bindingResult) {
+    public ResponseEntity<?> addPlayer(@Valid @RequestBody PlayerDto playerDto, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors() || player.getUsername() == null) {
+        if (bindingResult.hasErrors() || playerDto.getUsername() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        gameService.addPlayer(player);
+        gameService.addPlayer(playerDtoToPlayer.convert(playerDto));
 
         HttpHeaders headers = new HttpHeaders();
 
