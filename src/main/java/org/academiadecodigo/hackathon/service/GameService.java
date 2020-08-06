@@ -39,6 +39,7 @@ public class GameService {
     }
 
     public BlackList getBlackList(Player player) {
+        return blackLists.get(player);
     }
 
     public List<String> getMockWeapons() {
@@ -85,37 +86,10 @@ public class GameService {
     public Map<Player, BlackList> setVictims () {
 
         randomizer(players, blackLists);
+        //players.add(players.remove(0));
 
-        int i = 0;
-        blackLists.forEach((player, blackList) -> {
-            blackList.setVictim(players.get(i).getUsername());
-            i++;
-        });
-
-        blackLists.get(blackLists.size() - 1).setVictim(blackLists.get(0).getPlayer().getUsername());
+        blackLists.forEach((player, blackList) -> blackList.setVictim(players.iterator().next().getUsername()));
 
         return blackLists;
     }
-
-/*
-    public void randomizer() {
-
-        List victims = getVictims();
-        List weapons = getMockWeapons();
-        List crimeScenes = getMockCrimeScenes();
-
-        for (Player player : players) {
-
-            int rand1 = (int) Math.random() * victims;
-            int rand2;
-            int rand3;
-
-            while (player.equals(victims.get(rand1))) {
-
-                blackListFactory.createBlackList(victims.remove(rand1), weapons.remove(rand2), crimeScenes.remove(rand3));
-
-                rand
-            }
-        }
-    }*/
 }
