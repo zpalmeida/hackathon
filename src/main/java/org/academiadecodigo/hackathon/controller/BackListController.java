@@ -60,8 +60,10 @@ public class BackListController {
         }
 
         if (!gameService.isGameStarted()) {
-            return null;
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        gameService.setVictims();
 
         return new ResponseEntity<>(gameService.getBlackList(gameService.findPlayerByUsername(username)), HttpStatus.OK);
     }

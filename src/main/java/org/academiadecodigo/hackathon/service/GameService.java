@@ -81,7 +81,7 @@ public class GameService {
 
         for (Player player : players) {
 
-            if(weapons.size() < 1) {
+            if (weapons.size() < 1) {
                 weapons = getMockWeapons();
             }
 
@@ -98,7 +98,7 @@ public class GameService {
         }
     }
 
-    public List<BlackList> setVictims() {
+    public void setVictims() {
 
         setWeaponsAndScenes(blackLists);
 
@@ -108,8 +108,6 @@ public class GameService {
         }
 
         blackLists.get(blackLists.size() - 1).setVictim(players.get(0).getUsername());
-
-        return blackLists;
     }
 
     public Player findPlayerByUsername(String username) {
