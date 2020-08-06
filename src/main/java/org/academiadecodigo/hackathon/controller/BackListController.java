@@ -1,5 +1,6 @@
 package org.academiadecodigo.hackathon.controller;
 
+import org.academiadecodigo.hackathon.model.BlackList;
 import org.academiadecodigo.hackathon.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -49,5 +50,35 @@ public class BackListController {
         HttpHeaders headers = new HttpHeaders();
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{username}")
+    public ResponseEntity<BlackList> sendBlackList(@PathVariable String username, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        if (!gameService.isGameStarted()) {
+            return null;
+        }
+
+        return new ResponseEntity<>(gameService.getBlackList(gameService.findPlayerByUsername(username)), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{kUsername}/{vUsername}")
+    public ResponseEntity<BlackList> sendBlackList(@PathVariable String kUsername, BindingResult bindingResult1, @PathVariable String vUsername, BindingResult bindingResult2) {
+
+        if (bindingResult1.hasErrors() || bindingResult2.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        if (!gameService.findPlayerByUsername(vUsername).isDead()) {
+            return null;
+        }
+
+        gameService.findPlayerByUsername(kUsername).addKill();
+
+        return new ResponseEntity<>(gameService.getBlackList(gameService.findPlayerByUsername(vUsername)), HttpStatus.OK);
     }
 }

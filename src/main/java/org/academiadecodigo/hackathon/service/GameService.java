@@ -16,6 +16,7 @@ public class GameService {
     private List<String> crimeScenes;
     private List<BlackList> blackLists = new ArrayList<>();
     private BlackListFactory blackListFactory = new BlackListFactory();
+    private boolean gameStarted = false;
 
     public void setWeapons(List<String> weapons) {
         this.weapons = weapons;
@@ -30,12 +31,20 @@ public class GameService {
         this.blackListFactory = blackListFactory;
     }
 
+    public void startGame() {
+        gameStarted = true;
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
 
     public void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public boolean isGameStarted() {
+        return gameStarted;
     }
 
     public BlackList getBlackList(Player player) {
@@ -101,5 +110,16 @@ public class GameService {
         blackLists.get(blackLists.size() - 1).setVictim(players.get(0).getUsername());
 
         return blackLists;
+    }
+
+    public Player findPlayerByUsername(String username) {
+
+        for (Player player : players) {
+
+            if (player.getUsername().equals(username)) {
+                return player;
+            }
+        }
+        return null;
     }
 }
