@@ -1,6 +1,5 @@
 package org.academiadecodigo.hackathon.controller;
 
-import org.academiadecodigo.hackathon.model.BlackList;
 import org.academiadecodigo.hackathon.model.Player;
 import org.academiadecodigo.hackathon.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class PlayerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/")
-    public ResponseEntity<?> addPlayer(@Valid @RequestBody Boolean gameMasterStartedGame, BindingResult bindingResult) {
+    public ResponseEntity<?> startGame(@Valid @RequestBody Boolean gameMasterStartedGame, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -55,6 +54,20 @@ public class PlayerController {
         if (gameMasterStartedGame) {
             gameService.startGame();
         }
+
+        HttpHeaders headers = new HttpHeaders();
+
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/{username}")
+    public ResponseEntity<?> killPlayer(@Valid @RequestBody @PathVariable String username, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        gameService.findPlayerByUsername(username).kill();
 
         HttpHeaders headers = new HttpHeaders();
 
