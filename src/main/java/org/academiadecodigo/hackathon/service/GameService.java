@@ -37,10 +37,10 @@ public class GameService {
     public void addPlayer(Player player) {
         players.add(player);
     }
-/*
+
     public BlackList getBlackList(Player player) {
         return player.getBlackList();
-    }*/
+    }
 
     public List<String> getMockWeapons() {
 
@@ -80,7 +80,7 @@ public class GameService {
             String crimeScene = crimeScenes.remove((int)(Math.random() * (crimeScenes.size() + 1)));
 
             BlackList blackList = blackListFactory.createBlackList(weapon, crimeScene);
-            //player.setBlackList(blackList);
+            player.setBlackList(blackList);
             blackLists.add(blackList);
         }
     }

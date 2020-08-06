@@ -1,7 +1,6 @@
 package org.academiadecodigo.hackathon.controller;
 
 import org.academiadecodigo.hackathon.model.Player;
-import org.academiadecodigo.hackathon.model.dto.PlayerDto;
 import org.academiadecodigo.hackathon.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -34,7 +33,7 @@ public class PlayerController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = {"/", ""})
-    public ResponseEntity<?> addPlayer(@RequestBody Player player, BindingResult bindingResult) {
+    public ResponseEntity<?> addPlayer(@Valid @RequestBody Player player, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors() || player.getUsername() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
