@@ -44,20 +44,12 @@ public class PlayerController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/")
-    public ResponseEntity<?> startGame(@Valid @RequestBody Boolean gameMasterStartedGame, BindingResult bindingResult) {
+    @RequestMapping(method = RequestMethod.GET, path = "/start-game")
+    public ResponseEntity<?> startGame() {
 
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        gameService.startGame();
 
-        if (gameMasterStartedGame) {
-            gameService.startGame();
-        }
-
-        HttpHeaders headers = new HttpHeaders();
-
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/{username}")

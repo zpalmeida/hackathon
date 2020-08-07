@@ -55,11 +55,13 @@ public class BackListController {
     @RequestMapping(method = RequestMethod.GET, path = "/{username}")
     public ResponseEntity<BlackList> sendBlackList(@PathVariable String username) {
 
-        /*
+        if (gameService.findPlayerByUsername(username) == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         if (!gameService.isGameStarted()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        */
 
         gameService.setVictims();
 
@@ -67,9 +69,9 @@ public class BackListController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{kUsername}/{vUsername}")
-    public ResponseEntity<BlackList> sendBlackList(@PathVariable String kUsername, BindingResult bindingResult1, @PathVariable String vUsername, BindingResult bindingResult2) {
+    public ResponseEntity<BlackList> sendBlackList(@PathVariable String kUsername, @PathVariable String vUsername) {
 
-        if (bindingResult1.hasErrors() || bindingResult2.hasErrors()) {
+        if (gameService.findPlayerByUsername(kUsername) == null || gameService.findPlayerByUsername(vUsername) == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
